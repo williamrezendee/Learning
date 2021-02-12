@@ -6,6 +6,9 @@ public class Motorcycle extends Vehicle {
 	private String chainType;
 	
 	// Constructor
+	public Motorcycle() {
+		
+	}
 	public Motorcycle(String plate, int fabricationYear, int modelYear, String color, String chassis, int mileage,
 			double valueDaily, String motorcycleType, String chainType) {
 		super(plate, fabricationYear, modelYear, color, chassis, mileage, valueDaily);

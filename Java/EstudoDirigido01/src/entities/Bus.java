@@ -6,6 +6,9 @@ public class Bus extends Vehicle {
 	private int emergencyWindows;
 	
 	// Constructor
+	public Bus() {
+		
+	}
 	public Bus(String plate, int fabricationYear, int modelYear, String color, String chassis, int mileage, 
 			double valueDaily, String busType, int emergencyWindows) {
 		super(plate, fabricationYear, modelYear, color, chassis, mileage, valueDaily);
