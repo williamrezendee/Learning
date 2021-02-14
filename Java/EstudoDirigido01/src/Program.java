@@ -140,6 +140,7 @@ public class Program {
 				}
 			}
 			System.out.println("");
+			input.close();
 		}
 	}	
 	private static int Menu() {
