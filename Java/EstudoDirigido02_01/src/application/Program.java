@@ -1,11 +1,9 @@
 package application;
 
 import entities.Hospede;
-import entities.Pessoa;
 import entities.Colaborador;
 
 import java.util.Scanner;
-import java.util.stream.IntStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -98,28 +96,44 @@ public class Program {
 					System.out.println();
 					break;
 				case 3:
-					MostrarQuartos(quartos);
-					System.out.print("Escolha um quarto: ");
-					int numEscolha = Integer.parseInt(sc.next());
-					for (int i = 0; i < 4; i++) {
-						for(int j = 0; j < 4; j++) {
-							if (quartos[i][j].getNumQuarto() == numEscolha) {
-								System.out.println("Informações do quarto:");
-								System.out.println("Número: " + quartos[i][j].getNumQuarto());
-								System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
-								System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
-								System.out.println("Tipos de cama: ");
-								int numCamasSolteiro = 0;
-								int numCamasCasal = 0;
-								for(int q = 0; q < quartos[i][j].getNumCamas(); q++) {
-									if (quartos[i][j].getCamas(q).getTipoCama() == TipoCama.SOLTEIRO) {
-										numCamasSolteiro++;
+					String reserva = "N";
+					while (!(reserva.equals("Y")) || !(reserva.equals("y"))) {
+						MostrarQuartos(quartos);
+						System.out.print("Escolha um quarto: ");
+						int numEscolha = Integer.parseInt(sc.next());
+						for (int i = 0; i < 4; i++) {
+							for(int j = 0; j < 4; j++) {
+								if (quartos[i][j].getNumQuarto() == numEscolha) {
+									System.out.println("Informações do quarto:");
+									System.out.println("Número: " + quartos[i][j].getNumQuarto());
+									System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
+									System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
+									System.out.println("Tipos de cama: ");
+									int numCamasSolteiro = 0;
+									int numCamasCasal = 0;
+									for(int q = 0; q < quartos[i][j].getNumCamas(); q++) {
+										if (quartos[i][j].getCamas(q).getTipoCama() == TipoCama.SOLTEIRO) {
+											numCamasSolteiro++;
+										}
+										else {
+											numCamasCasal++;
+										}
 									}
-									else {
-										numCamasCasal++;
+									System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal");// Dá para melhorar
+									System.out.println("=========================");
+									System.out.print("Deseja fazer a reserva desse quarto(Y/N)? ");
+									reserva = sc.next();
+									if (reserva.equals("Y") || reserva.equals("y")) {
+										System.out.print("Informe o CPF do hospede: ");
+										String cpf = sc.next();
+										for (Hospede h : hospedes) {
+											if (h.getCpf().equals(cpf)) {
+												quartos[i][j].setHospede(h);
+												quartos[i][j].setOcupado(true);
+											}
+										}
 									}
 								}
-								System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal"); // Dá para melhorar
 							}
 						}
 					}
@@ -164,6 +178,5 @@ public class Program {
 		System.out.println("Legenda: X = Quarto Reservado");
 		System.out.println();
 	}
-	
 	public static Random random = new Random();
 }
