@@ -6,8 +6,8 @@ public class Cama {
 	// Attributes
 	private TipoCama tipoCama;
 	// Constructors
-	public Cama(TipoCama tipoCama) {
-		this.tipoCama = tipoCama;
+	public Cama(TipoCama tipo) {
+		this.tipoCama = tipo;
 	}
 	// Getters
 	public TipoCama getTipoCama() { return tipoCama; }

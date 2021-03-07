@@ -7,18 +7,15 @@ public class Quarto {
 	private int numQuarto;
 	private TipoQuarto tipoQuarto;
 	private int numCamas;
-	private Cama camas[] = new Cama[numCamas];
+	private Cama camas[];
 	private boolean ocupado;
 	private Hospede hospede;
 	// Constructors
-	public Quarto() {
-	}
-	public Quarto(TipoQuarto tipoQuarto, int numCamas, int num) {
-		this.tipoQuarto = tipoQuarto;
-		this.numCamas = numCamas;
+	public Quarto(int numCamas) {
 		this.ocupado = false;
 		this.hospede = null;
-		this.numQuarto = num;
+		this.camas = new Cama[numCamas];
+		this.numCamas = numCamas;
 	}
 	// Getters
 	public int getNumQuarto() { return numQuarto; }
@@ -33,10 +30,9 @@ public class Quarto {
 	// Setters
 	public void setNumQuarto(int num) { this.numQuarto = num; }
 	public void setTipoQuarto(TipoQuarto tipoQuarto) { this.tipoQuarto = tipoQuarto; }
-	public void setNumCamas(int numCamas) { this.numCamas = numCamas; }
 	public void setOcupado(boolean ocupado) { this.ocupado = ocupado; }
 	public void setHospede(Hospede hospede) { this.hospede = hospede; }
-	public void setCamas(Cama cama, int position) {
-		camas[position] = cama;
+	public void setCamas( int posicao, Cama cama) {
+		camas[posicao] = cama;
 	}
 }

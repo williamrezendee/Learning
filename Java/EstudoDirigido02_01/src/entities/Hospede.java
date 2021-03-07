@@ -4,7 +4,7 @@ public class Hospede extends Pessoa {
 	// Attributes
 	private int ocupacoesRealizadas;
 	// Constructors
-	public Hospede(String nome, int rg, int cpf, String endereco, int telefone, int celular, String email) {
+	public Hospede(String nome, String rg, String cpf, String endereco, String telefone, String celular, String email) {
 		super(nome, rg, cpf, endereco, telefone, celular, email);
 		this.ocupacoesRealizadas = 0;
 	}

@@ -27,9 +27,29 @@ public class Program {
 		for(int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				numQuarto++;
-				quartos[i][j] = new Quarto();
+				int numCamas = random.nextInt(4);
+				numCamas++;
+				quartos[i][j] = new Quarto(numCamas);
 				quartos[i][j].setNumQuarto(numQuarto);
-				quartos[i][j].setTipoQuarto();
+				// Configura o tipo de Quarto com base em um número aleatório
+				int tipoQuarto =  random.nextInt(2);
+				if(tipoQuarto == 0) {
+					quartos[i][j].setTipoQuarto(TipoQuarto.SIMPLES);
+				}
+				else {
+					quartos[i][j].setTipoQuarto(TipoQuarto.LUXO);
+				}
+				// Define o tipo de cada cama
+				int tipoCama;
+				for(int q = 0; q < numCamas; q++) { // Lembrar que numCamas foi incrementado na linha 31
+					tipoCama = random.nextInt(2);
+					if(tipoCama == 0) {
+						quartos[i][j].setCamas(q, new Cama(TipoCama.SOLTEIRO));
+					}
+					else {
+						quartos[i][j].setCamas(q, new Cama(TipoCama.CASAL));
+					}
+				}
 			}	
 		}
 		
@@ -43,41 +63,69 @@ public class Program {
 					sc.nextLine();
 					String nomeC = sc.nextLine();
 					System.out.print("RG: ");
-					int rgC = Integer.parseInt(sc.next());
+					String rgC = sc.next();
 					System.out.print("CPF: ");
-					int cpfC = Integer.parseInt(sc.next());
+					String cpfC = sc.next();
 					System.out.print("Endereço: ");
 					String enderecoC = sc.nextLine();
 					System.out.print("Telefone(apenas números): ");
-					int telefoneC = Integer.parseInt(sc.next());
+					String telefoneC = sc.next();
 					System.out.print("Celular(apenas números): ");
-					int celularC = Integer.parseInt(sc.next());
+					String celularC = sc.next();
 					System.out.print("E-mail: ");
 					String emailC = sc.next();
 					Colaborador colab = new Colaborador(nomeC, rgC, cpfC, enderecoC, telefoneC, celularC, emailC);
 					colabs.add(colab);
+					System.out.println();
+					break;
 				case 2:
 					System.out.print("Nome do hospede: ");
 					String nomeH = sc.nextLine();
 					System.out.print("RG: ");
-					int rgH = Integer.parseInt(sc.next());
+					String rgH = sc.next();
 					System.out.print("CPF: ");
-					int cpfH = Integer.parseInt(sc.next());
+					String cpfH = sc.next();
 					System.out.print("Endereço: ");
 					String enderecoH = sc.nextLine();
 					System.out.print("Telefone(apenas números): ");
-					int telefoneH = Integer.parseInt(sc.next());
+					String telefoneH = sc.next();
 					System.out.print("Celular(apenas números): ");
-					int celularH = Integer.parseInt(sc.next());
+					String celularH = sc.next();
 					System.out.print("E-mail: ");
 					String emailH = sc.next();
 					Hospede hospede = new Hospede(nomeH, rgH, cpfH, enderecoH, telefoneH, celularH, emailH);
 					hospedes.add(hospede);
+					System.out.println();
+					break;
 				case 3:
 					MostrarQuartos(quartos);
-					System.out.println("Escolha um quarto: ");
+					System.out.print("Escolha um quarto: ");
 					int numEscolha = Integer.parseInt(sc.next());
-				default:	
+					for (int i = 0; i < 4; i++) {
+						for(int j = 0; j < 4; j++) {
+							if (quartos[i][j].getNumQuarto() == numEscolha) {
+								System.out.println("Informações do quarto:");
+								System.out.println("Número: " + quartos[i][j].getNumQuarto());
+								System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
+								System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
+								System.out.println("Tipos de cama: ");
+								int numCamasSolteiro = 0;
+								int numCamasCasal = 0;
+								for(int q = 0; q < quartos[i][j].getNumCamas(); q++) {
+									if (quartos[i][j].getCamas(q).getTipoCama() == TipoCama.SOLTEIRO) {
+										numCamasSolteiro++;
+									}
+									else {
+										numCamasCasal++;
+									}
+								}
+								System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal"); // Dá para melhorar
+							}
+						}
+					}
+					break;
+				default:
+					break;
 			}
 		}	
 		sc.close();
@@ -116,4 +164,6 @@ public class Program {
 		System.out.println("Legenda: X = Quarto Reservado");
 		System.out.println();
 	}
+	
+	public static Random random = new Random();
 }

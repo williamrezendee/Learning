@@ -1,5 +1,5 @@
 package enums;
 
 public enum TipoCama {
-	Solteiro, Casal;
+	SOLTEIRO, CASAL;
 }
