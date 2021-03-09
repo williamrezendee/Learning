@@ -10,6 +10,9 @@ public class Pessoa {
 	private String celular;
 	private String email;
 	// Constructors
+	public Pessoa() {
+		
+	}
 	public Pessoa(String nome, String rg, String cpf, String endereco, String telefone, String celular, String email) {
 		this.nome = nome;
 		this.rg = rg;

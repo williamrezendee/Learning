@@ -16,14 +16,111 @@ public class Program {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
-		ArrayList<Colaborador> colabs = new ArrayList<Colaborador>();
+		Colaborador colaborador = new Colaborador();
 		ArrayList<Hospede> hospedes = new ArrayList<Hospede>();
 		
-		Quarto quartos[][] = new Quarto[4][4];
+		Quarto quartos[][] = GerarMatriz();
+		
+		int opcao = 0;
+		while (opcao != 9) {
+			Menu();
+			opcao = sc.nextInt();
+			if (opcao == 1) {
+				hospedes.add(colaborador.CadastrarHospede(sc));
+			}
+			else if (opcao == 2) {
+				MostrarQuartos(quartos);
+				String reserva = null;
+				System.out.print("Escolha um quarto: ");
+				int numEscolha = sc.nextInt();
+				for (int i = 0; i < 4; i++) {
+					for (int j = 0; j < 6; j++) {
+						if (quartos[i][j].getNumQuarto() == numEscolha) {
+							System.out.println("Informações do quarto:");
+							System.out.println("Número: " + quartos[i][j].getNumQuarto());
+							System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
+							System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
+							System.out.println("Tipos de cama: ");
+							int numCamasSolteiro = 0;
+							int numCamasCasal = 0;
+							for (int q = 0; q < quartos[i][j].getNumCamas(); q++) {
+								if (quartos[i][j].getCamas(q).getTipoCama() == TipoCama.SOLTEIRO) {
+									numCamasSolteiro++;
+								} else {
+									numCamasCasal++;
+								}
+							}
+							System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal");																					// melhorar
+							System.out.println("=====================================");
+							System.out.print("Deseja fazer a reserva desse quarto(Y/N)? ");
+							reserva = sc.next();
+							if (reserva.equals("Y") || reserva.equals("y")) {
+								System.out.print("Informe o CPF do hospede: ");
+								String cpf = sc.next();
+								boolean verificar = colaborador.VerificarHospede(hospedes, cpf);
+								if (verificar == true) {
+									quartos = colaborador.FazerReserva(quartos, hospedes, i, j, cpf);
+									System.out.println("Reserva efetuada com sucesso!");
+								}
+								else {
+									System.out.println();
+									System.out.println("Nenhum hospede cadastrado com esse CPF!");
+									System.out.println("Realize o cadastro:");
+									hospedes.add(colaborador.CadastrarHospede(sc));
+								}
+							}
+						}
+					}
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		sc.close();
+	}
+	public static void Menu() {
+		System.out.println("=====================================");
+		System.out.println("S I S T E M A  D E  H O T E L A R I A");
+		System.out.println("=====================================");
+		System.out.println("1 - Cadastrar Hospede");
+		System.out.println("2 - Fazer uma reserva");
+		System.out.println("3 - Alterar dados cadastrais");
+		System.out.println("9 - Sair");
+		System.out.println("=====================================");
+		System.out.print("Escolha uma opção: ");
+	}
+	public static void MostrarQuartos(Quarto matriz[][]) {
+		System.out.println();
+		System.out.println("=====================================");
+		System.out.println("            Q U A R T O S            ");
+		System.out.println("=====================================");
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 6; j++) {
+				if(matriz[i][j].getOcupado() == false) {
+					if(matriz[i][j].getNumQuarto() < 10) {
+						System.out.print("|  " + matriz[i][j].getNumQuarto() + "  ");
+					}
+					else {
+						System.out.print("|  " + matriz[i][j].getNumQuarto() + " ");
+					}	
+				}
+				else {
+					System.out.print("|  X  ");
+				}
+			}
+			System.out.println("|");
+		}
+		System.out.println("=====================================");
+		System.out.println("Legenda: X = Quarto Reservado");
+		System.out.println();
+	}
+	public static Random random = new Random();
+	
+	public static Quarto[][] GerarMatriz() {
+		Quarto quartos[][] = new Quarto[4][6];
 		int numQuarto = 0;
 		for(int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
+			for (int j = 0; j < 6; j++) {
 				numQuarto++;
 				int numCamas = random.nextInt(4);
 				numCamas++;
@@ -50,133 +147,6 @@ public class Program {
 				}
 			}	
 		}
-		
-		int opcao = 0;
-		while(opcao != 9) {
-			Menu();
-			opcao = sc.nextInt();
-			switch (opcao) {
-				case 1:
-					System.out.print("Nome do colaborador: ");
-					sc.nextLine();
-					String nomeC = sc.nextLine();
-					System.out.print("RG: ");
-					String rgC = sc.next();
-					System.out.print("CPF: ");
-					String cpfC = sc.next();
-					System.out.print("Endereço: ");
-					String enderecoC = sc.nextLine();
-					System.out.print("Telefone(apenas números): ");
-					String telefoneC = sc.next();
-					System.out.print("Celular(apenas números): ");
-					String celularC = sc.next();
-					System.out.print("E-mail: ");
-					String emailC = sc.next();
-					Colaborador colab = new Colaborador(nomeC, rgC, cpfC, enderecoC, telefoneC, celularC, emailC);
-					colabs.add(colab);
-					System.out.println();
-					break;
-				case 2:
-					System.out.print("Nome do hospede: ");
-					String nomeH = sc.nextLine();
-					System.out.print("RG: ");
-					String rgH = sc.next();
-					System.out.print("CPF: ");
-					String cpfH = sc.next();
-					System.out.print("Endereço: ");
-					String enderecoH = sc.nextLine();
-					System.out.print("Telefone(apenas números): ");
-					String telefoneH = sc.next();
-					System.out.print("Celular(apenas números): ");
-					String celularH = sc.next();
-					System.out.print("E-mail: ");
-					String emailH = sc.next();
-					Hospede hospede = new Hospede(nomeH, rgH, cpfH, enderecoH, telefoneH, celularH, emailH);
-					hospedes.add(hospede);
-					System.out.println();
-					break;
-				case 3:
-					String reserva = "N";
-					while (!(reserva.equals("Y")) || !(reserva.equals("y"))) {
-						MostrarQuartos(quartos);
-						System.out.print("Escolha um quarto: ");
-						int numEscolha = Integer.parseInt(sc.next());
-						for (int i = 0; i < 4; i++) {
-							for(int j = 0; j < 4; j++) {
-								if (quartos[i][j].getNumQuarto() == numEscolha) {
-									System.out.println("Informações do quarto:");
-									System.out.println("Número: " + quartos[i][j].getNumQuarto());
-									System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
-									System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
-									System.out.println("Tipos de cama: ");
-									int numCamasSolteiro = 0;
-									int numCamasCasal = 0;
-									for(int q = 0; q < quartos[i][j].getNumCamas(); q++) {
-										if (quartos[i][j].getCamas(q).getTipoCama() == TipoCama.SOLTEIRO) {
-											numCamasSolteiro++;
-										}
-										else {
-											numCamasCasal++;
-										}
-									}
-									System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal");// Dá para melhorar
-									System.out.println("=========================");
-									System.out.print("Deseja fazer a reserva desse quarto(Y/N)? ");
-									reserva = sc.next();
-									if (reserva.equals("Y") || reserva.equals("y")) {
-										System.out.print("Informe o CPF do hospede: ");
-										String cpf = sc.next();
-										for (Hospede h : hospedes) {
-											if (h.getCpf().equals(cpf)) {
-												quartos[i][j].setHospede(h);
-												quartos[i][j].setOcupado(true);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-					break;
-				default:
-					break;
-			}
-		}	
-		sc.close();
+		return quartos;
 	}
-	
-	public static void Menu() {
-		System.out.println("Escolha uma das opções abaixo:");
-		System.out.println("1 - Cadastrar colaborador");
-		System.out.println("2 - Cadastrar Hospede");
-		System.out.println("3 - Fazer uma reserva");
-		System.out.println("4 - Alterar dados cadastrais");
-		System.out.println("9 - Sair");
-	}
-	public static void MostrarQuartos(Quarto matriz[][]) {
-		System.out.println();
-		System.out.println("=========================");
-		System.out.println("      Q U A R T O S      ");
-		System.out.println("=========================");
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				if(matriz[i][j].getOcupado() == false) {
-					if(matriz[i][j].getNumQuarto() < 10) {
-						System.out.print("|  " + matriz[i][j].getNumQuarto() + "  ");
-					}
-					else {
-						System.out.print("|  " + matriz[i][j].getNumQuarto() + " ");
-					}	
-				}
-				else {
-					System.out.print("|  X  |  ");
-				}
-			}
-			System.out.println("|");
-		}
-		System.out.println("=========================");
-		System.out.println("Legenda: X = Quarto Reservado");
-		System.out.println();
-	}
-	public static Random random = new Random();
 }

@@ -12,4 +12,5 @@ public class Hospede extends Pessoa {
 	public int getOcupacoesRealizadas() { return ocupacoesRealizadas; }
 	// Setters
 	public void setOcupacoesRealizadas(int ocupacoes) { this.ocupacoesRealizadas = ocupacoes; }
+	
 }
