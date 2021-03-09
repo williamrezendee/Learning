@@ -36,8 +36,10 @@ public class Program {
 				for (int i = 0; i < 4; i++) {
 					for (int j = 0; j < 6; j++) {
 						if (quartos[i][j].getNumQuarto() == numEscolha) {
+							System.out.println("=====================================");
 							System.out.println("Informações do quarto:");
-							System.out.println("Número: " + quartos[i][j].getNumQuarto());
+							System.out.println("=====================================");
+							System.out.println("Quarto: " + quartos[i][j].getNumQuarto());
 							System.out.println("Tipo: " + quartos[i][j].getTipoQuarto());
 							System.out.println("Quantidade de camas: " + quartos[i][j].getNumCamas());
 							System.out.println("Tipos de cama: ");
@@ -52,7 +54,7 @@ public class Program {
 							}
 							System.out.println(numCamasSolteiro + " Solteiro e " + numCamasCasal + " Casal");																					// melhorar
 							System.out.println("=====================================");
-							System.out.print("Deseja fazer a reserva desse quarto(Y/N)? ");
+							System.out.print("Reservar esse quarto(Y/N)? ");
 							reserva = sc.next();
 							if (reserva.equals("Y") || reserva.equals("y")) {
 								System.out.print("Informe o CPF do hospede: ");
@@ -112,7 +114,6 @@ public class Program {
 		}
 		System.out.println("=====================================");
 		System.out.println("Legenda: X = Quarto Reservado");
-		System.out.println();
 	}
 	public static Random random = new Random();
 	
