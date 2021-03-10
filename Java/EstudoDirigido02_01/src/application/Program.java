@@ -62,12 +62,13 @@ public class Program {
 								boolean verificar = colaborador.VerificarHospede(hospedes, cpf);
 								if (verificar == true) {
 									quartos = colaborador.FazerReserva(quartos, hospedes, i, j, cpf);
+									System.out.println("=====================================");
 									System.out.println("Reserva efetuada com sucesso!");
 								}
 								else {
-									System.out.println();
+									System.out.println("=====================================");
 									System.out.println("Nenhum hospede cadastrado com esse CPF!");
-									System.out.println("Realize o cadastro:");
+									System.out.println("Cadastrar :");
 									hospedes.add(colaborador.CadastrarHospede(sc));
 								}
 							}
@@ -75,6 +76,66 @@ public class Program {
 					}
 				}
 				System.out.println();
+			}
+			else if (opcao == 3) {
+				System.out.println("=====================================");
+				System.out.println("|  1 - Nome  | 4-Endereço | 7-Email |");
+				System.out.println("|  2 - RG    | 5-Telefone |         |");
+				System.out.println("|  3 - CPF   | 6-Celular  |         |");
+				System.out.println("=====================================");
+				System.out.print("Selecione o dado que deseja alterar: ");
+				int dadoAlterar = sc.nextInt();
+				System.out.print("Informe o CPF do hospede: ");
+				String cpf = sc.next();
+				for (Hospede h : hospedes) {
+					if (cpf.equals(h.getCpf())) {
+						String novoDado = null;
+						switch(dadoAlterar) {
+						case 1:
+							System.out.print("Novo nome: ");
+							novoDado = sc.nextLine();
+							h.setNome(novoDado);
+							System.out.println("OK!");
+							break;
+						case 2:
+							System.out.print("Novo RG: ");
+							novoDado = sc.nextLine();
+							h.setRg(novoDado);
+							System.out.println("OK!");
+							break;
+						case 3:
+							System.out.print("Novo CPF: ");
+							novoDado = sc.nextLine();
+							h.setCpf(novoDado);
+							System.out.println("OK!");
+							break;
+						case 4:
+							System.out.print("Novo endereço: ");
+							novoDado = sc.nextLine();
+							h.setEndereco(novoDado);
+							System.out.println("OK!");
+							break;
+						case 5:
+							System.out.print("Novo telefone: ");
+							novoDado = sc.nextLine();
+							h.setTelefone(novoDado);
+							System.out.println("OK!");
+							break;
+						case 6:
+							System.out.print("Novo celular: ");
+							novoDado = sc.nextLine();
+							h.setCelular(novoDado);
+							System.out.println("OK!");
+							break;
+						case 7:
+							System.out.print("Novo e-mail: ");
+							novoDado = sc.nextLine();
+							h.setEmail(novoDado);
+							System.out.println("OK!");
+							break;
+						}
+					}
+				}
 			}
 			System.out.println();
 		}
@@ -86,7 +147,7 @@ public class Program {
 		System.out.println("=====================================");
 		System.out.println("1 - Cadastrar Hospede");
 		System.out.println("2 - Fazer uma reserva");
-		System.out.println("3 - Alterar dados cadastrais");
+		System.out.println("3 - Alterar dados do hospede");
 		System.out.println("9 - Sair");
 		System.out.println("=====================================");
 		System.out.print("Escolha uma opção: ");
