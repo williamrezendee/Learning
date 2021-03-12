@@ -1,9 +1,11 @@
 package entities;
 
+import java.util.Scanner;
+
 public class Aluno extends Pessoa {
 
 	public Aluno(
-			int matricula,
+			String matricula,
 			String nome,
 			String cpf,
 			String email,

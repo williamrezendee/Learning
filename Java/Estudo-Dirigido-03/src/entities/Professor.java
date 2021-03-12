@@ -6,7 +6,7 @@ public class Professor extends Pessoa{
 	private String areaFormacao;
 	// Constructor
 	public Professor(
-			int matricula, 
+			String matricula, 
 			String nome, 
 			String cpf, 
 			String email, 
