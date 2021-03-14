@@ -26,10 +26,14 @@ public class Professor extends Pessoa{
 	public void setAreaFormacao(String areaFormacao) { this.areaFormacao = areaFormacao; }
 	// Methods
 	public void Ensinar() {
-		// Do something...
+		System.out.println("Ensinando...");
 	}
 	public void Pesquisar() {
-		// Do something...
+		System.out.println("Pesquisando...");
+	}
+	public String toString() {
+		return super.toString() + " | Carga Horária: " + this.cargaHoraria + 
+				" | Formação: " + this.areaFormacao;
 	}
 	
 }

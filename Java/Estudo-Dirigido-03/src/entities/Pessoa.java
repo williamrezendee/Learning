@@ -27,4 +27,13 @@ public class Pessoa {
 	public void setCpf(String cpf) { this.cpf = cpf; }
 	public void setEmail(String email) { this.email = email; }
 	public void setTelefone(String telefone) { this.telefone = telefone; }
+	
+	@Override
+	public String toString() {
+		return "Matrícula: " + this.matricula
+				+ " | Nome: " + this.nome
+				+ " | CPF: " + this.cpf
+				+ " | e-mail: " + this.email
+				+ " | Telefone: " + this.telefone;
+	}
 }

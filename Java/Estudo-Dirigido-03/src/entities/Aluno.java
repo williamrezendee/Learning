@@ -1,53 +1,62 @@
 package entities;
 
-import java.util.Scanner;
+import entities.enums.Curso;
 
 public class Aluno extends Pessoa {
-
+	// Attributes
+	private Curso curso;
+	private int horaComplementar;
+	private int horaEstagio;
+	private boolean projetoConclusao;
+	// Constructor
 	public Aluno(
 			String matricula,
 			String nome,
 			String cpf,
 			String email,
-			String telefone
+			String telefone,
+			Curso curso
 			) {
 		super(matricula, nome, cpf, email, telefone);
+		this.horaComplementar = 0;
+		this.horaEstagio = 0;
+		this.projetoConclusao = false;
+		this.curso = curso;
 	}
 	
+	// Getters
+	public Curso getCurso() { return curso; }
+	// Setters
+	public void setCurso(Curso curso) { this.curso = curso; }
+	
+	// Methods
 	public void Estudar() {
-		// Do something...
+		System.out.println("Estudando...");
 	}
 	public void Cursar() {
-		// Do something...
+		System.out.println("Cursando...");
 	}
-	public boolean Formar() {
-		return true; // Need to implement code
-	}
-	
-	public class CienciaComputacao {
-		// Attributes
-		private int horaComplementar; // Numero de horas complementares
-		private int horaEstagio; // Numero de horas estagiando
-		// Getters
-		public int getHoraComplemetar() { return horaComplementar; }
-		public int getHoraEstagio() { return horaEstagio; }
-		// Setters
-		public void setHoraComplementar(int horaComplementar) { 
-			this.horaComplementar = horaComplementar; 
-		}
-		public void setHoraEstagio(int horaEstagio) {
-			this.horaEstagio = horaEstagio;
-		}
+	public void Formar() {
+		System.out.println("Formando...");
 	}
 	
-	public class Logistica {
-		// Attributes
-		private boolean projetoConclusao;
-		// Getters
-		public boolean getProjetoConclusao() { return projetoConclusao; }
-		// Setters
-		public void setProjetoConclusao(boolean projetoConclusao) {
-			this.projetoConclusao = projetoConclusao;
+	@Override
+	public String toString() {
+		if (this.curso == Curso.CIENCIA_DA_COMPUTACAO) {
+			return super.toString() + " | Horas Complementares: "+
+					this.horaComplementar+
+					" | Horas de Estágio: "+
+					this.horaEstagio;
+		}
+		else {
+			String dado;
+			if (this.projetoConclusao == true) {
+				dado = "Sim";
+			}
+			else {
+				dado = "Não";
+			}
+			return super.toString() + " | Projeto de conclusão: " + dado;
 		}
 	}
 }
