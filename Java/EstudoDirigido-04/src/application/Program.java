@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entities.Pessoa;
@@ -28,7 +29,13 @@ public class Program {
 				Menu();
 				opcao = Integer.parseInt(sc.nextLine());
 				if (opcao == 1) {
-					pessoas[contador] = Produtora.AdicionarNovoAtor(sc);
+					if (contador >= pessoas.length) {
+						pessoas = ExpandirArray(pessoas);
+						pessoas[contador] = Produtora.AdicionarNovoAtor(sc);
+					}
+					else {
+						pessoas[contador] = Produtora.AdicionarNovoAtor(sc);
+					}
 					contador++;
 				}
 				else if(opcao == 2) {
@@ -38,7 +45,13 @@ public class Program {
 					Produtora.ExcluirAtor(sc, pessoas);
 				}
 				else if (opcao == 4) {
-					pessoas[contador] = Produtora.AdicionarNovoDiretor(sc);
+					if (contador >= pessoas.length) {
+						pessoas = ExpandirArray(pessoas);
+						pessoas[contador] = Produtora.AdicionarNovoDiretor(sc);
+					}
+					else {
+						pessoas[contador] = Produtora.AdicionarNovoDiretor(sc);
+					}
 					contador++;
 				}
 				else if (opcao == 5) {
@@ -46,8 +59,11 @@ public class Program {
 				}
 			}
 		}
-		catch(Exception e) {
-			
+		catch(InputMismatchException error) {
+			System.out.println("Erro! O valor digitado não é válido! Por favor, tente novamente.");
+		}
+		catch(NumberFormatException error) {
+			System.out.println("Erro! O valor digitado não é válido! Por favor, tente novamente.");
 		}
 		sc.close();
 	}
@@ -64,5 +80,12 @@ public class Program {
 		System.out.println("5 - Listar pessoas cadastradas");
 		System.out.println("9 - Sair");
 	}
-
+	
+	public static Pessoa[] ExpandirArray(Pessoa[] pessoas) {
+		Pessoa[] novoArray = new Pessoa[pessoas.length * 2];
+		for (int i = 0; i < pessoas.length; i++) {
+			novoArray[i] = pessoas[i];
+		}
+		return novoArray;
+	}
 }
