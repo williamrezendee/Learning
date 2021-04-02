@@ -1,4 +1,4 @@
-package Entidades;
+package Model.Entities;
 
 public abstract class Pessoa {
 	private String nome;

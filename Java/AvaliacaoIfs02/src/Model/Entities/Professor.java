@@ -1,4 +1,4 @@
-package Entidades;
+package Model.Entities;
 
 public class Professor extends Pessoa {
 
