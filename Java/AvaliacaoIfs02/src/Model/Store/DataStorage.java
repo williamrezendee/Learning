@@ -1,16 +1,25 @@
 package Model.Store;
 
 import Model.Entities.Aluno;
-import Model.Entities.Pessoa;
-import Model.Entities.Turma;
+import Model.Entities.Professor;
+
 
 public class DataStorage {
-	private static Pessoa[] cadastros = new Pessoa[10];
-	private Turma[] turmas = new Turma[10];
-	static int cont = 0;
 	
-	public static void SalvarAluno(Aluno aluno) {
-		cadastros[cont] = aluno;
-		cont++;
+	private static Aluno[] vetorAluno = new Aluno[1];
+	private static Professor[] vetorProfessor = new Professor[1];
+	
+	public static void SalvarVetorAluno(Aluno[] vetor) {
+		vetorAluno = vetor;
+	}
+	public static void SalvarVetorProfessor(Professor[] vetor) {
+		vetorProfessor = vetor;
+	}
+	
+	public static Aluno[] MostrarVetorAluno() {
+		return vetorAluno;
+	}
+	public static Professor[] MostrarVetorPrfessor() {
+		return vetorProfessor;
 	}
 }

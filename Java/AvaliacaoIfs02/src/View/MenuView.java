@@ -2,8 +2,6 @@ package View;
 
 import java.util.Scanner;
 
-import Controller.AlunoControl;
-
 public class MenuView {
 
 	public static void main(String[] args) {
@@ -21,9 +19,10 @@ public class MenuView {
 			case "3":
 				break;
 			case "4":
-				AlunoControl.IncluirAluno(AlunoView.IncluirAluno(scan));
+				AlunoView.IncluirAluno(scan);
 				break;
 			case "5":
+				AlunoView.AlterarAluno(scan);
 				break;
 			case "6":
 				break;
@@ -44,6 +43,9 @@ public class MenuView {
 	}
 	
 	public static void Menu() {
+		System.out.println("================================");
+		System.out.println("    CAPSULA DO TEMPO DIGITAL    ");
+		System.out.println("================================");
 		System.out.println("1 - Dados da IES");
 		System.out.println("2 - Dados da Turma");
 		System.out.println("3 - Dads do Professor");
@@ -54,6 +56,7 @@ public class MenuView {
 		System.out.println("8 - Cifrar texto");
 		System.out.println("9 - Decifrar texto");
 		System.out.println("X - Sair");
+		System.out.println("================================");
 		System.out.print("Digite a sua opção: ");
 	}
 

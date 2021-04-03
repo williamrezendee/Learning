@@ -39,6 +39,7 @@ public abstract class Pessoa {
 	public void setCpf(String cpf) {this.cpf = cpf;}
 	public void setEndereco(String endereco) {this.endereco = endereco;}
 	public void setCelular(String celular) {this.celular = celular;}
+	public void setEmail(String email) {this.email = email;}
 	public void setLoginUsuario(String loginUsuario) {this.loginUsuario = loginUsuario;}
 	public void setLoginSenha(String loginSenha) {this.loginSenha = loginSenha;}
 }

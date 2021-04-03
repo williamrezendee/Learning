@@ -3,7 +3,9 @@ package Controller;
 import Model.Entities.Aluno;
 
 public class AlunoControl {
-	public static void IncluirAluno(String[] novoAluno) {
+	
+	public static boolean Inserir(String[] novoAluno) {
+		
 		Aluno aluno = new Aluno(
 				novoAluno[0], 
 				novoAluno[1], 
@@ -11,8 +13,27 @@ public class AlunoControl {
 				novoAluno[3], 
 				novoAluno[4],
 				novoAluno[5],
-				novoAluno[6]
+				novoAluno[6],
+				novoAluno[7]
 				);
-		aluno.IncluirAluno(aluno);
+		if(Aluno.InserirAluno(aluno))
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean AlterarDados(String novoDado, String codigoAluno, int opcao) {
+		if(Aluno.AlterarDadosAluno(novoDado, codigoAluno, opcao))
+			return true;
+		else
+			return false;
+		
+	}
+	public static boolean ValidarCodigo(String codigo) {
+		return Aluno.ValidarCodigoAluno(codigo);
+	}
+	
+	public static void Excluir(String codigo) {
+		Aluno.ExcluirAluno(codigo);
 	}
 }
