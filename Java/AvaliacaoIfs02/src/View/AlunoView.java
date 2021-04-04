@@ -6,9 +6,8 @@ import Controller.AlunoControl;
 
 public class AlunoView {
 	
-	private static String[] dadosAluno = new String[8];
-	
 	public static void IncluirAluno(Scanner scan) {
+		String[] dadosAluno = new String[8];
 		System.out.println();
 		System.out.println("================================");
 		System.out.println("Insira as informações a seguir: ");
@@ -31,10 +30,13 @@ public class AlunoView {
 		dadosAluno[7] =scan.nextLine().trim();
 		System.out.println("================================");
 		if (AlunoControl.Inserir(dadosAluno)) {
-			System.out.println("Aluno cadastrado com sucesso!");
+			System.out.println("Aluno cadastrado com sucesso!   ");
+			System.out.println("================================");
 		}
 		else {
-			System.out.println("Falha ao cadastrar Aluno!");
+			System.out.println("================================");
+			System.out.println("    Falha ao cadastrar Aluno!   ");
+			System.out.println("================================");
 		}
 		System.out.println();
 	}
@@ -56,7 +58,9 @@ public class AlunoView {
 			}
 		}
 		else {
-			System.out.println("Código não encontrado!");
+			System.out.println("================================");
+			System.out.println("     Código não encontrado!     ");
+			System.out.println("================================");
 		}
 		System.out.println();
 	}
@@ -64,13 +68,13 @@ public class AlunoView {
 	private static void MostrarOpcoes() {
 		System.out.println("================================");
 		System.out.println("O que deseja alterar? ");
-		System.out.println("1-Nome;");
-		System.out.println("2-CPF;");
-		System.out.println("3-Endereço;");
-		System.out.println("4-Celular;");
-		System.out.println("5-Email;");
-		System.out.println("6-Usuário;");
-		System.out.println("7-Senha;");
+		System.out.println("1-Nome");
+		System.out.println("2-CPF");
+		System.out.println("3-Endereço");
+		System.out.println("4-Celular");
+		System.out.println("5-Email");
+		System.out.println("6-Usuário");
+		System.out.println("7-Senha");
 	}
 	
 	private static String AlterarDado(int opcao, Scanner scan) {

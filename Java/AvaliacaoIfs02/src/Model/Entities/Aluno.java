@@ -7,8 +7,8 @@ public class Aluno extends Pessoa {
 	private String codigoAluno;
 	private static int contador = 0;
 	// Constructors
-	public Aluno(String codigoAluno, String nome, String cpf, String endereco, String celular, String email, 
-			String loginUsuario,String loginSenha) {
+	public Aluno(String codigoAluno, String nome, String cpf, String endereco, String celular,
+			String email, String loginUsuario,String loginSenha) {
 		super(nome, cpf, endereco, celular, email, loginUsuario, loginSenha);
 		this.codigoAluno = codigoAluno;
 	}

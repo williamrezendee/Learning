@@ -17,6 +17,7 @@ public class MenuView {
 			case "2":
 				break;
 			case "3":
+				ProfessorView.MenuProfessor(scan);
 				break;
 			case "4":
 				AlunoView.IncluirAluno(scan);
@@ -48,7 +49,7 @@ public class MenuView {
 		System.out.println("================================");
 		System.out.println("1 - Dados da IES");
 		System.out.println("2 - Dados da Turma");
-		System.out.println("3 - Dads do Professor");
+		System.out.println("3 - Dados do Professor");
 		System.out.println("4 - Incluir um aluno");
 		System.out.println("5 - Alterar um aluno");
 		System.out.println("6 - Excluir um aluno");

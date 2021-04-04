@@ -9,17 +9,19 @@ public class DataStorage {
 	private static Aluno[] vetorAluno = new Aluno[1];
 	private static Professor[] vetorProfessor = new Professor[1];
 	
-	public static void SalvarVetorAluno(Aluno[] vetor) {
+	public static boolean SalvarVetorAluno(Aluno[] vetor) {
 		vetorAluno = vetor;
+		return true;
 	}
-	public static void SalvarVetorProfessor(Professor[] vetor) {
+	public static boolean SalvarVetorProfessor(Professor[] vetor) {
 		vetorProfessor = vetor;
+		return true;
 	}
 	
 	public static Aluno[] MostrarVetorAluno() {
 		return vetorAluno;
 	}
-	public static Professor[] MostrarVetorPrfessor() {
+	public static Professor[] MostrarVetorProfessor() {
 		return vetorProfessor;
 	}
 }

@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Entities.Aluno;
+import Model.Services.CriptografiaService;
 
 public class AlunoControl {
 	
@@ -14,7 +15,7 @@ public class AlunoControl {
 				novoAluno[4],
 				novoAluno[5],
 				novoAluno[6],
-				novoAluno[7]
+				novoAluno[7] = CriptografiaService.CriptografarSenha(novoAluno[7])
 				);
 		if(Aluno.InserirAluno(aluno))
 			return true;
