@@ -92,6 +92,17 @@ public class Aluno extends Pessoa {
 		DataStorage.SalvarVetorAluno(OrganizarVetor(vetorAluno));
 	}
 	
+	public static String PegarSenha(String codigoAluno) {
+		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
+		String senhaAluno = null;
+		for (int i = 0; i < vetorAluno.length; i++) {
+			if (vetorAluno[i].getCodigoAluno().equals(codigoAluno)) {
+				senhaAluno = vetorAluno[i].getLoginSenha();
+			}
+		}
+		return senhaAluno;
+	}
+	
 	public static Aluno[] OrganizarVetor(Aluno[] vetor) {
 		Aluno[] vetorOrganizado = new Aluno[vetor.length];
 		int indiceControle = 0;

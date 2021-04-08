@@ -30,6 +30,11 @@ public class AlunoControl {
 			return false;
 		
 	}
+	
+	public static String PegarSenhaAluno(String codigoAluno) {
+		return Aluno.PegarSenha(codigoAluno);
+	}
+	
 	public static boolean ValidarCodigo(String codigo) {
 		return Aluno.ValidarCodigoAluno(codigo);
 	}

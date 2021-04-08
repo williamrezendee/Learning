@@ -50,4 +50,26 @@ public class Professor extends Pessoa {
 		}
 		return lista;
 	}
+	public static boolean ValidarCodigoProfessor(String codigo) {
+		Professor[] vetorProfessor = DataStorage.MostrarVetorProfessor();
+		for (int i = 0; i < vetorProfessor.length; i++) {
+			if (vetorProfessor[i] != null) {
+				if (vetorProfessor[i].getCodigoProfessor().equals(codigo)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static String PegarSenha(String codigoProfessor) {
+		Professor[] vetorProfessor = DataStorage.MostrarVetorProfessor();
+		String senhaProfessor = null;
+		for (int i = 0; i < vetorProfessor.length; i++) {
+			if (vetorProfessor[i].getCodigoProfessor().equals(codigoProfessor)) {
+				senhaProfessor = vetorProfessor[i].getLoginSenha();
+			}
+		}
+		return senhaProfessor;
+	}
 }

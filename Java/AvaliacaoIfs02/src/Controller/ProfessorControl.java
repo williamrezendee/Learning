@@ -23,6 +23,14 @@ public class ProfessorControl {
 		else
 			return false;
 	}
+	
+	public static String PegarSenhaProfessor(String codigoProfessor) {
+		return Professor.PegarSenha(codigoProfessor);
+	}
+	
+	public static boolean ValidarCodigo(String codigo) {
+		return Professor.ValidarCodigoProfessor(codigo);
+	}
 
 	public static ArrayList<String[]> Listar() {
 		return Professor.ListarProfessores();
