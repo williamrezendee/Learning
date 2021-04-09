@@ -39,7 +39,7 @@ public class AlunoControl {
 		return Aluno.ValidarCodigoAluno(codigo);
 	}
 	
-	public static void Excluir(String codigo) {
-		Aluno.ExcluirAluno(codigo);
+	public static boolean Excluir(String codigo) {
+		return Aluno.ExcluirAluno(codigo);
 	}
 }

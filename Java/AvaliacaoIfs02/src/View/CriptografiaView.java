@@ -1,6 +1,5 @@
 package View;
 
-import java.util.Calendar;
 import java.util.Scanner;
 
 import Controller.AlunoControl;
@@ -37,7 +36,6 @@ public class CriptografiaView {
 	}
 	
 	public static void DescriptografarTexto(Scanner scan) {
-		Calendar dataAtual = Calendar.getInstance();
 		System.out.println("================================");
 		System.out.print("Código do Professor: ");
 		String codigoProfessor = scan.nextLine().trim();
@@ -45,7 +43,7 @@ public class CriptografiaView {
 			System.out.print("Código do Aluno: ");
 			String codigoAluno = scan.nextLine();
 			if (AlunoControl.ValidarCodigo(codigoAluno)) {
-				if (CalendarioControl.VerificarData()) {
+				if (CalendarioControl.VerificarDataAtual()) {
 					if (CriptografiaControl.Descriptografar(codigoAluno, codigoProfessor)) {
 						System.out.println("Texto descriptografado com sucesso!");
 					}

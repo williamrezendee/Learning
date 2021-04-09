@@ -80,16 +80,18 @@ public class Aluno extends Pessoa {
 		return true;
 	}
 	
-	public static void ExcluirAluno(String codigo) {
+	public static boolean ExcluirAluno(String codigo) {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		for (int i = 0; i < vetorAluno.length; i++) {
 			if (vetorAluno[i] != null) {
 				if (vetorAluno[i].getCodigoAluno().equals(codigo)) {
 					vetorAluno[i] = null;
+					DataStorage.SalvarVetorAluno(OrganizarVetor(vetorAluno));
+					return true;
 				}
 			}
 		}
-		DataStorage.SalvarVetorAluno(OrganizarVetor(vetorAluno));
+		return false;
 	}
 	
 	public static String PegarSenha(String codigoAluno) {

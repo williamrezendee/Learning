@@ -6,7 +6,7 @@ import org.jasypt.util.text.BasicTextEncryptor;
 public class CriptografiaService {
 	
 	private static BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-	private static ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+	
 	
 	public static String CriptografarTexto( String textoOriginal, String senhaAluno, String senhaProfessor) {
 		textEncryptor.setPasswordCharArray(senhaAluno.toCharArray());
@@ -25,13 +25,15 @@ public class CriptografiaService {
 	}
 	
 	public static String CriptografarSenha(String senha) {
-		passwordEncryptor.setAlgorithm("SHA-1");
-		passwordEncryptor.setPlainDigest(true);
+		ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+			passwordEncryptor.setAlgorithm("SHA-1");
+			passwordEncryptor.setPlainDigest(true);
 		String senhaCriptografada = passwordEncryptor.encryptPassword(senha);
 		return senhaCriptografada;
 	}
 	
 	public static boolean ValidarSenha(String senhaInformada, String senhaCriptografada) {
+		ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
 		return passwordEncryptor.checkPassword(senhaInformada, senhaCriptografada);
 	}
 }

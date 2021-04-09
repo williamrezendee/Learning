@@ -3,6 +3,7 @@ package View;
 import java.util.Scanner;
 
 import Controller.ProfessorControl;
+import Model.Services.ValidarCPFService;
 
 public class ProfessorView {
 
@@ -18,6 +19,10 @@ public class ProfessorView {
 		dadosProfessor[1] = scan.nextLine().trim().toUpperCase();
 		System.out.print("CPF: ");
 		dadosProfessor[2] = scan.nextLine().trim().toUpperCase();
+		while (!(ValidarCPFService.isCPF(dadosProfessor[2]))) {
+			System.out.println("CPF inválido! Tente novamente: ");
+			dadosProfessor[2] = scan.nextLine().trim().toUpperCase();
+		}
 		System.out.print("Endereço: ");
 		dadosProfessor[3] = scan.nextLine().trim().toUpperCase();
 		System.out.print("Celular: ");

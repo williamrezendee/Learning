@@ -33,8 +33,10 @@ public class MenuView {
 				AlunoView.AlterarAluno(scan);
 				break;
 			case "6":
+				AlunoView.ExcluirAluno(scan);
 				break;
 			case "7":
+				
 				break;
 			case "8":
 				CriptografiaView.CriptografarTexto(scan);

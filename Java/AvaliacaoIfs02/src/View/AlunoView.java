@@ -3,6 +3,7 @@ package View;
 import java.util.Scanner;
 
 import Controller.AlunoControl;
+import Model.Services.ValidarCPFService;
 
 public class AlunoView {
 	
@@ -18,6 +19,10 @@ public class AlunoView {
 		dadosAluno[1] = scan.nextLine().trim().toUpperCase();
 		System.out.print("CPF: ");
 		dadosAluno[2] = scan.nextLine().trim().toUpperCase();
+		while (!(ValidarCPFService.isCPF(dadosAluno[2]))) {
+			System.out.println("CPF inválido! Tente novamente: ");
+			dadosAluno[2] = scan.nextLine().trim().toUpperCase();
+		}
 		System.out.print("Endereço: ");
 		dadosAluno[3] = scan.nextLine().trim().toUpperCase();
 		System.out.print("Celular: ");
@@ -63,6 +68,18 @@ public class AlunoView {
 			System.out.println("================================");
 		}
 		System.out.println();
+	}
+	
+	public static void ExcluirAluno(Scanner scan) {
+		System.out.println("================================");
+		System.out.print("Informe o código do aluno:");
+		String codigo = scan.nextLine().trim();
+		if (AlunoControl.Excluir(codigo)) {
+			System.out.println("Aluno excluído com sucesso!");
+		}
+		else {
+			System.out.println("Aluno não encontrado! Por favor, tente novamente.");
+		}
 	}
 	
 	private static void MostrarOpcoes() {
