@@ -28,9 +28,14 @@ public abstract class Pessoa {
 	}
 	
 	public String getNome() {return nome;}
-	public String getCpf() {return cpf;}
+	public String getCpf() {
+		return(this.cpf.substring(0, 3) + "." + this.cpf.substring(3, 6) + "." +
+				this.cpf.substring(6, 9) + "-" + this.cpf.substring(9, 11));
+	}
 	public String getEndereco() {return endereco;}
-	public String getCelular() { return celular;}
+	public String getCelular() { 
+		return("("+ this.celular.substring(0, 2) + ") " + this.celular.substring(2, 7) + "-" +
+			this.celular.substring(7, 11));}
 	public String getEmail() {return email;}
 	public String getLoginUsuario() {return loginUsuario;}
 	public String getLoginSenha() {return loginSenha;}

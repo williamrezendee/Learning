@@ -8,16 +8,23 @@ public class MenuView {
 		Scanner scan = new Scanner(System.in);
 		boolean isItTrue = true;
 		String option;
+		
+		IesView.CriarIES();
+		ProfessorView.Cadastrar(scan);
+		TurmaView.CadastrarTurma(scan);
+		
 		while (isItTrue) {
 			Menu();
 			option = scan.nextLine().toUpperCase().trim();
 			switch(option) {
 			case "1":
+				IesView.MostrarDados(scan);
 				break;
 			case "2":
+				TurmaView.MostrarDados(scan);
 				break;
 			case "3":
-				ProfessorView.MenuProfessor(scan);
+				ProfessorView.MostrarDados(scan);
 				break;
 			case "4":
 				AlunoView.IncluirAluno(scan);
@@ -30,8 +37,10 @@ public class MenuView {
 			case "7":
 				break;
 			case "8":
+				CriptografiaView.CriptografarTexto(scan);
 				break;
 			case "9":
+				CriptografiaView.DescriptografarTexto(scan);
 				break;
 			case "X":
 				isItTrue = false;
@@ -60,5 +69,4 @@ public class MenuView {
 		System.out.println("================================");
 		System.out.print("Digite a sua opção: ");
 	}
-
 }

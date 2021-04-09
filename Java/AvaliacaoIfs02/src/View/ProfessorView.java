@@ -1,41 +1,18 @@
 package View;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controller.ProfessorControl;
 
 public class ProfessorView {
-	
-	public static void MenuProfessor(Scanner scan) {
-		System.out.println("================================");
-		System.out.println("Escolha uma das opções a seguir:");
-		System.out.println("================================");
-		System.out.println("1-Cadastrar Professor");
-		System.out.println("2-Mostrar lista de Professor");
-		int escolha = Integer.parseInt(scan.nextLine());
-		switch (escolha) {
-		case 1:
-			IncluirProfessor(scan);
-			break;
-		case 2:
-			ArrayList<String[]> lista = ProfessorControl.Listar();
-			for (String[] vetor : lista) {
-				System.out.println("Matricula: "+vetor[0]+", Nome: "+vetor[1]);
-			}
-			break;
-		default:
-			System.out.println("Opção Inválida!");
-		}
-	}
 
-	private static void IncluirProfessor(Scanner scan) {
+	public static void Cadastrar(Scanner scan) {
 		String[] dadosProfessor = new String[8];
-		System.out.println();
 		System.out.println("================================");
+		System.out.println("      CADASTRAR PROFESSOR       ");
 		System.out.println("Insira as informações a seguir: ");
 		System.out.println("================================");
-		System.out.print("Código do Professor: ");
+		System.out.print("Código(XXXXXX): ");
 		dadosProfessor[0] = scan.nextLine().trim().toUpperCase();
 		System.out.print("Nome: ");
 		dadosProfessor[1] = scan.nextLine().trim().toUpperCase();
@@ -52,7 +29,7 @@ public class ProfessorView {
 		System.out.print("Senha: ");
 		dadosProfessor[7] =scan.nextLine().trim();
 		System.out.println("================================");
-		if (ProfessorControl.Inserir(dadosProfessor)) {
+		if (ProfessorControl.CadastrarProfessor(dadosProfessor)) {
 			System.out.println("Professor cadastrado com sucesso!   ");
 			System.out.println("================================");
 		}
@@ -62,5 +39,18 @@ public class ProfessorView {
 			System.out.println("================================");
 		}
 		System.out.println();
+	}
+	
+	public static void MostrarDados(Scanner scan) {
+		String[] dados = ProfessorControl.MostrarDadosProfessor();
+		System.out.println("================================");
+		System.out.println("PROFESSOR CADASTRADO:");
+		System.out.println("Código: " + dados[0]);
+		System.out.println("Nome: " + dados[1]);
+		System.out.println("CPF: " + dados[2]);
+		System.out.println("Endereço: " + dados[3]);
+		System.out.println("Celular: " + dados[4]);
+		System.out.println("E-mail: " + dados[5]);
+		scan.nextLine();
 	}
 }

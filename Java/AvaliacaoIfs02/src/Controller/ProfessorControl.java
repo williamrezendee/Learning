@@ -1,22 +1,20 @@
 package Controller;
 
-import java.util.ArrayList;
-
 import Model.Entities.Professor;
 import Model.Services.CriptografiaService;
 
 public class ProfessorControl {
 	
-	public static boolean Inserir(String[] novoProfessor) {
+	public static boolean CadastrarProfessor(String[] dadosProfessor) {
 		Professor professor = new Professor(
-				novoProfessor[0], 
-				novoProfessor[1], 
-				novoProfessor[2], 
-				novoProfessor[3], 
-				novoProfessor[4],
-				novoProfessor[5],
-				novoProfessor[6],
-				novoProfessor[7] = CriptografiaService.CriptografarSenha(novoProfessor[7])
+				dadosProfessor[0], 
+				dadosProfessor[1], 
+				dadosProfessor[2], 
+				dadosProfessor[3], 
+				dadosProfessor[4],
+				dadosProfessor[5],
+				dadosProfessor[6],
+				dadosProfessor[7] = CriptografiaService.CriptografarSenha(dadosProfessor[7])
 				);
 		if(Professor.InserirProfessor(professor))
 			return true;
@@ -32,7 +30,7 @@ public class ProfessorControl {
 		return Professor.ValidarCodigoProfessor(codigo);
 	}
 
-	public static ArrayList<String[]> Listar() {
-		return Professor.ListarProfessores();
+	public static String[] MostrarDadosProfessor() {
+		return Professor.ListarDadosProfessor();
 	}
 }
