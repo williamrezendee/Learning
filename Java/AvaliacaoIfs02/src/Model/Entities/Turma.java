@@ -73,7 +73,8 @@ public class Turma {
 			if (alunos[i] != null) {
 				dados[0] = alunos[i].getCodigo();
 				dados[1] = alunos[i].getNome();
-				listaDeAlunos.add(i, dados);
+				listaDeAlunos.add(i, dados); // O PROBLEMA DE LISTAR OS ALUNOS ESTÁ AQUI
+				// A LISTA SOBREPOE OS DADOS INSERIDOS NA POSICAO 1
 			}
 		}
 		return listaDeAlunos;

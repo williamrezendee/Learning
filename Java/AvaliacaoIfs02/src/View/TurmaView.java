@@ -94,8 +94,6 @@ public class TurmaView {
 		System.out.println(" NOME DA TURMA: " + dados[0]);
 		System.out.println(" DATA DE INÍCIO DAS AULAS: " + dados[1]);
 		System.out.println(" DATA DE TÉRMINO DAS AULAS: " + dados[2]);
-		System.out.println(" QUANTIDADE DE ALUNOS: *falta implementar*");
-		System.out.println(" QUANTIDADE DE PROFESSROES: *falta implementar*");
 		System.out.println();
 		System.out.println("################################################################");
 		System.out.println("        PRESSIONE \"ENTER\" PARA VOLTAR AO MENU PRINCIPAL       ");

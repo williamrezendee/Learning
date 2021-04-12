@@ -21,7 +21,7 @@ public class CriptografiaService {
 		String textoOriginal = textEncryptor1.decrypt(textoCriptografado);
 		BasicTextEncryptor textEncryptor2 = new BasicTextEncryptor();
 		textEncryptor2.setPasswordCharArray(senhaAluno.toCharArray());
-		textoOriginal = textEncryptor2.decrypt(textoCriptografado);
+		textoOriginal = textEncryptor2.decrypt(textoOriginal);
 		return textoOriginal;
 	}
 	

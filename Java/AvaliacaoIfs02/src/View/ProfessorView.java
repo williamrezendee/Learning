@@ -65,7 +65,6 @@ public class ProfessorView {
 		System.out.println(" ENDEREÇO: " + dados[3]);
 		System.out.println(" CELULAR: " + dados[4]);
 		System.out.println(" E-MAIL: " + dados[5]);
-		System.out.println(" USUÁRIO: *falta implementar*");
 		System.out.println();
 		System.out.println("################################################################");
 		System.out.println("        PRESSIONE \"ENTER\" PARA VOLTAR AO MENU PRINCIPAL       ");
