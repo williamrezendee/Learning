@@ -4,20 +4,20 @@ import Model.Store.DataStorage;
 
 public class Aluno extends Pessoa {
 	// Attributes
-	private String codigoAluno;
+	private String codigo;
 	private static int contador = 0;
 	// Constructors
-	public Aluno(String codigoAluno, String nome, String cpf, String endereco, String celular,
+	public Aluno(String codigo, String nome, String cpf, String endereco, String celular,
 			String email, String loginUsuario,String loginSenha) {
 		super(nome, cpf, endereco, celular, email, loginUsuario, loginSenha);
-		this.codigoAluno = codigoAluno;
+		this.codigo = codigo;
 	}
 	// Getters
-	public String getCodigoAluno() {return codigoAluno;}
+	public String getCodigo() {return codigo;}
 	// Setters
-	public void setCodigoAluno(String codigoAluno) {this.codigoAluno = codigoAluno;}
+	public void setCodigo(String codigoAluno) {this.codigo = codigoAluno;}
 	
-	public static boolean InserirAluno(Aluno aluno) {
+	public static boolean Inserir(Aluno aluno) {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		if(contador >= vetorAluno.length) {
 			vetorAluno = ExpandirArrayAluno(vetorAluno);
@@ -37,7 +37,7 @@ public class Aluno extends Pessoa {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		for (int i = 0; i < vetorAluno.length; i++) {
 			if (vetorAluno[i] != null) {
-				if (vetorAluno[i].getCodigoAluno().equals(codigo)) {
+				if (vetorAluno[i].getCodigo().equals(codigo)) {
 					return true;
 				}
 			}
@@ -49,7 +49,7 @@ public class Aluno extends Pessoa {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		for (int i = 0; i < vetorAluno.length; i++) {
 			if (vetorAluno[i] != null) {
-				if (vetorAluno[i].getCodigoAluno().equals(codigo)) {
+				if (vetorAluno[i].getCodigo().equals(codigo)) {
 					switch(opcao) {
 					case 1:
 						vetorAluno[i].setNome(novoDado);
@@ -84,7 +84,7 @@ public class Aluno extends Pessoa {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		for (int i = 0; i < vetorAluno.length; i++) {
 			if (vetorAluno[i] != null) {
-				if (vetorAluno[i].getCodigoAluno().equals(codigo)) {
+				if (vetorAluno[i].getCodigo().equals(codigo)) {
 					vetorAluno[i] = null;
 					DataStorage.SalvarVetorAluno(OrganizarVetor(vetorAluno));
 					return true;
@@ -98,8 +98,10 @@ public class Aluno extends Pessoa {
 		Aluno[] vetorAluno = DataStorage.MostrarVetorAluno();
 		String senhaAluno = null;
 		for (int i = 0; i < vetorAluno.length; i++) {
-			if (vetorAluno[i].getCodigoAluno().equals(codigoAluno)) {
-				senhaAluno = vetorAluno[i].getLoginSenha();
+			if (vetorAluno[i] != null) {
+				if (vetorAluno[i].getCodigo().equals(codigoAluno)) {
+					senhaAluno = vetorAluno[i].getLoginSenha();
+				}
 			}
 		}
 		return senhaAluno;

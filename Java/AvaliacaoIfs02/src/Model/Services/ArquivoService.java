@@ -21,14 +21,17 @@ public class ArquivoService {
 		}
 	}
 	
+	public static File CriarCaminhoDoArquivo(String codigoAluno) {
+		File pathFile = new File(path + codigoAluno + ".txt");
+		return pathFile;	
+	}
+	
 	public static File VerificarArquivo(String codigoAluno) {
 		File pathFile = new File(path + codigoAluno + ".txt");
 		if (pathFile.exists()) {
 			return pathFile;
 		}
-		else {
-			return null;
-		}	
+		return null;
 	}
 	
 	public static boolean VerificarDiretorio() {
@@ -61,7 +64,5 @@ public class ArquivoService {
 			e.getMessage();
 		}
 		return null;
-	}
-	
-	
+	}	
 }

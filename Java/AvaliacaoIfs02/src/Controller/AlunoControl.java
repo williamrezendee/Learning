@@ -6,7 +6,6 @@ import Model.Services.CriptografiaService;
 public class AlunoControl {
 	
 	public static boolean Inserir(String[] novoAluno) {
-		
 		Aluno aluno = new Aluno(
 				novoAluno[0], 
 				novoAluno[1], 
@@ -17,7 +16,7 @@ public class AlunoControl {
 				novoAluno[6],
 				novoAluno[7] = CriptografiaService.CriptografarSenha(novoAluno[7])
 				);
-		if(Aluno.InserirAluno(aluno))
+		if(Aluno.Inserir(aluno))
 			return true;
 		else
 			return false;

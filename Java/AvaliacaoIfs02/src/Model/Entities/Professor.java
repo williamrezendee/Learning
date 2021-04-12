@@ -4,20 +4,20 @@ import Model.Store.DataStorage;
 
 public class Professor extends Pessoa {
 	// Attributes
-	private String codigoProfessor;
+	private String codigo;
 	// Constructors
-	public Professor(String codigoProfessor, String nome, String cpf, String endereco, String celular, 
+	public Professor(String codigo, String nome, String cpf, String endereco, String celular, 
 			String email, String loginUsuario, String loginSenha) {
 		super(nome, cpf, endereco, celular, email, loginUsuario, loginSenha);
-		this.codigoProfessor = codigoProfessor;
+		this.codigo = codigo;
 	}
 	// Getters
-	public String getCodigoProfessor() {return codigoProfessor;}
+	public String getCodigo() {return codigo;}
 	// Setters
-	public void setCodigoProfessor(String codigo) {this.codigoProfessor = codigo;}
+	public void setCodigo(String codigo) {this.codigo = codigo;}
 	
 	
-	public static boolean InserirProfessor(Professor professor) {
+	public static boolean Inserir(Professor professor) {
 		if(DataStorage.SalvarProfessor(professor)) {
 			return true;
 		}
@@ -26,10 +26,10 @@ public class Professor extends Pessoa {
 		}
 	}
 	
-	public static String[] ListarDadosProfessor() {
+	public static String[] ListarDados() {
 		Professor professor = DataStorage.MostrarProfessor();
 		String[] dados = new String[6];
-		dados[0] = professor.getCodigoProfessor();
+		dados[0] = professor.getCodigo();
 		dados[1] = professor.getNome();
 		dados[2] = professor.getCpf();
 		dados[3] = professor.getEndereco();
@@ -37,21 +37,21 @@ public class Professor extends Pessoa {
 		dados[5] = professor.getEmail();
 		return dados;
 	}
-	public static boolean ValidarCodigoProfessor(String codigo) {
+	public static boolean ValidarCodigo(String codigo) {
 		Professor professor = DataStorage.MostrarProfessor();
 			if(professor != null) {
-				if (professor.getCodigoProfessor().equals(codigo)) {
+				if (professor.getCodigo().equals(codigo)) {
 					return true;
 				}
 			}
 		return false;
 	}
 	
-	public static String PegarSenha(String codigoProfessor) {
+	public static String PegarSenha(String codigo) {
 		Professor professor = DataStorage.MostrarProfessor();
 		String senhaProfessor = null;
 		if (professor != null) {
-			if (professor.getCodigoProfessor().equals(codigoProfessor)) {
+			if (professor.getCodigo().equals(codigo)) {
 				senhaProfessor = professor.getLoginSenha();
 			}
 		}

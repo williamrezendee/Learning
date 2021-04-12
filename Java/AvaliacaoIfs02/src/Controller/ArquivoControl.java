@@ -8,11 +8,9 @@ public class ArquivoControl {
 
 	public static boolean CriarArquivo(String texto, String codigoAluno) {
 		if (ArquivoService.VerificarDiretorio()) {
-			File pathFile = ArquivoService.VerificarArquivo(codigoAluno);
-			if (pathFile != null) {
-				ArquivoService.CriarArquivo(texto, pathFile);
-				return true;
-			}
+			File pathFile = ArquivoService.CriarCaminhoDoArquivo(codigoAluno);
+			ArquivoService.CriarArquivo(texto, pathFile);
+			return true;
 		}
 		else {
 			ArquivoService.CriarDiretorio();

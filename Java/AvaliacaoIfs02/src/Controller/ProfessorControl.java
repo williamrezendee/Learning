@@ -16,7 +16,7 @@ public class ProfessorControl {
 				dadosProfessor[6],
 				dadosProfessor[7] = CriptografiaService.CriptografarSenha(dadosProfessor[7])
 				);
-		if(Professor.InserirProfessor(professor))
+		if(Professor.Inserir(professor))
 			return true;
 		else
 			return false;
@@ -27,10 +27,10 @@ public class ProfessorControl {
 	}
 	
 	public static boolean ValidarCodigo(String codigo) {
-		return Professor.ValidarCodigoProfessor(codigo);
+		return Professor.ValidarCodigo(codigo);
 	}
 
 	public static String[] MostrarDadosProfessor() {
-		return Professor.ListarDadosProfessor();
+		return Professor.ListarDados();
 	}
 }

@@ -19,53 +19,86 @@ public class TurmaView {
 			.toFormatter()
 			.withResolverStyle(ResolverStyle.SMART);
 	
-	public static void CadastrarTurma(Scanner scan) {
-		System.out.println("================================");
-		System.out.println("        CADASTRAR TURMA         ");
-		System.out.println("Insira as informações a seguir: ");
-		System.out.println("================================");
-		System.out.print("Título: ");
+	public static boolean CadastrarTurma(Scanner scan) {
+		System.out.println();
+		System.out.println("       C A D A S T R A R  T U R M A  N O  S I S T E M A        ");
+		System.out.println();
+		System.out.println("################################################################");
+		System.out.println();
+		System.out.print(" DIGITE O NOME DA TURMA: ");
 		String titulo = scan.nextLine().trim().toUpperCase();
 		try {
-			System.out.print("Data de início das aulas(dd/MM/aaaa): ");
+			System.out.print(" DATA DE INÍCIO DAS AULAS (dd/MM/yyy): ");
 			String dataInicial = scan.nextLine().trim().toUpperCase();
 			while(!(CalendarioControl.ValidarData(dataInicial))) {
-				System.out.println("Data inválida! Repita novamente:");
+				System.out.println("################################################################");
+				System.out.println("                 DATA INVÁLIDA! TENTE NOVAMENTE.                ");
+				System.out.println("            A DATA INFORMADA NÃO EXISTE NO CALENDÁRIO           ");
+				System.out.println("################################################################");
+				System.out.print(" DATA DE INÍCIO DAS AULAS (dd/MM/yyy): ");
 				dataInicial = scan.nextLine().trim().toUpperCase();
 			}
 			LocalDate dataInicioTurma = LocalDate.parse(dataInicial, formato);
-			System.out.print("Data de termino das aulas(dd/MM/aaaa): ");
+			System.out.print(" DATA DE TÉRMINO DAS AULAS (dd/MM/yyyy): ");
 			String dataFinal = scan.nextLine().trim().toUpperCase();
 			while(!(CalendarioControl.ValidarData(dataFinal))) {
-				System.out.println("Data inválida! Repita novamente:");
+				System.out.println("################################################################");
+				System.out.println("                 DATA INVÁLIDA! TENTE NOVAMENTE.                ");
+				System.out.println("            A DATA INFORMADA NÃO EXISTE NO CALENDÁRIO           ");
+				System.out.println("################################################################");
+				System.out.print(" DATA DE TÉRMINO DAS AULAS (dd/MM/yyyy): ");
 				dataFinal = scan.nextLine().trim().toUpperCase();
 			}	
 			LocalDate dataFimTurma = LocalDate.parse(dataFinal, formato);
-			System.out.println("================================");
+			// Validar a entrada da data término
+			while(dataFimTurma.isEqual(dataInicioTurma)||dataFimTurma.isBefore(dataInicioTurma)) {
+				System.out.println("################################################################");
+				System.out.println("                 DATA INVÁLIDA! TENTE NOVAMENTE.                ");
+				System.out.println("  DATA DE TÉRMINO NÃO PODE SER MENOR OU IGUAL A DATA DE INÍCIO! ");
+				System.out.println("################################################################");
+				System.out.print(" DATA DE TÉRMINO DAS AULAS (dd/MM/yyyy): ");
+				dataFinal = scan.nextLine().trim().toUpperCase();
+				dataFimTurma = LocalDate.parse(dataFinal, formato);
+			}
+			System.out.println();
+			System.out.println("################################################################");
 			if (TurmaControl.CadastrarTurma(titulo, dataInicioTurma, dataFimTurma)) {
-				System.out.println(" Turma cadastrada com sucesso!  ");
-				System.out.println("================================");
+				System.out.println("                  TURMA CADASTRADA COM SUCESSO!                 ");
+				System.out.println("################################################################");
+				System.out.println("        PRESSIONE \"ENTER\" PARA ADICIONAR UM PROFESSOR         ");
+				scan.nextLine();
+				return true;
 			}
 			else {
-				System.out.println("================================");
-				System.out.println("   Falha ao cadastrar Turma!    ");
-				System.out.println("================================");
+				System.out.println("################################################################");
+				System.out.println("              FALHA AO CADASTRAR TURMA NO SISTEMA!              ");
+				System.out.println("################################################################");
+				System.out.println("        PRESSIONE \"ENTER\" PARA VOLTAR AO MENU PRINCIPAL       ");
+				scan.nextLine();
 			}
-		System.out.println();
+			return false;
 		}
 		catch (DateTimeParseException e) {
 			System.out.println(e.getMessage());
 		}
+		return false;
 	}
 	
 	public static void MostrarDados(Scanner scan) {
 		String[] dados = TurmaControl.MostrarDadosTurma();
-		System.out.println("================================");
-		System.out.println("TURMA CADASTRADA:");
 		System.out.println();
-		System.out.println("Título: " + dados[0]);
-		System.out.println("Data de Início das aulas: " + dados[1]);
-		System.out.println("Data de Termino das aulas: " + dados[2]);
+		System.out.println("                    D A D O S  D A  T U R M A                   ");
+		System.out.println();
+		System.out.println("################################################################");
+		System.out.println();
+		System.out.println(" NOME DA TURMA: " + dados[0]);
+		System.out.println(" DATA DE INÍCIO DAS AULAS: " + dados[1]);
+		System.out.println(" DATA DE TÉRMINO DAS AULAS: " + dados[2]);
+		System.out.println(" QUANTIDADE DE ALUNOS: *falta implementar*");
+		System.out.println(" QUANTIDADE DE PROFESSROES: *falta implementar*");
+		System.out.println();
+		System.out.println("################################################################");
+		System.out.println("        PRESSIONE \"ENTER\" PARA VOLTAR AO MENU PRINCIPAL       ");
 		scan.nextLine();
 	}
 }

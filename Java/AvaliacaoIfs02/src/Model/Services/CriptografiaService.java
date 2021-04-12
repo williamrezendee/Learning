@@ -4,23 +4,24 @@ import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 
 public class CriptografiaService {
-	
-	private static BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-	
-	
+		
 	public static String CriptografarTexto( String textoOriginal, String senhaAluno, String senhaProfessor) {
-		textEncryptor.setPasswordCharArray(senhaAluno.toCharArray());
-		String textoCriptografado = textEncryptor.encrypt(textoOriginal);
-		textEncryptor.setPasswordCharArray(senhaProfessor.toCharArray());
-		textoCriptografado = textEncryptor.encrypt(textoCriptografado);
+		BasicTextEncryptor textEncryptor1 = new BasicTextEncryptor();
+		textEncryptor1.setPasswordCharArray(senhaAluno.toCharArray());
+		String textoCriptografado = textEncryptor1.encrypt(textoOriginal);
+		BasicTextEncryptor textEncryptor2 = new BasicTextEncryptor();
+		textEncryptor2.setPasswordCharArray(senhaProfessor.toCharArray());
+		textoCriptografado = textEncryptor2.encrypt(textoCriptografado);
 		return textoCriptografado;
 	}
 	
 	public static String DescriptografarTexto(String textoCriptografado, String senhaAluno, String senhaProfessor) {
-		textEncryptor.setPasswordCharArray(senhaProfessor.toCharArray());
-		String textoOriginal = textEncryptor.decrypt(textoCriptografado);
-		textEncryptor.setPasswordCharArray(senhaAluno.toCharArray());
-		textoOriginal = textEncryptor.decrypt(textoCriptografado);
+		BasicTextEncryptor textEncryptor1 = new BasicTextEncryptor();
+		textEncryptor1.setPasswordCharArray(senhaProfessor.toCharArray());
+		String textoOriginal = textEncryptor1.decrypt(textoCriptografado);
+		BasicTextEncryptor textEncryptor2 = new BasicTextEncryptor();
+		textEncryptor2.setPasswordCharArray(senhaAluno.toCharArray());
+		textoOriginal = textEncryptor2.decrypt(textoCriptografado);
 		return textoOriginal;
 	}
 	

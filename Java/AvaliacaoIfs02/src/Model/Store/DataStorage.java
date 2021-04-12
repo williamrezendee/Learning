@@ -8,7 +8,7 @@ import Model.Entities.Turma;
 
 public class DataStorage {
 	
-	private static Aluno[] vetorAluno = new Aluno[1];
+	private static Aluno[] vetorAluno = new Aluno[2]; //NULL
 	private static Professor professor;
 	private static Turma turma;
 	private static IES ies;
