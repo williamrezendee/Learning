@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using Exercise.Services;
+using Exercise.Entities;
 
 namespace Exercise
 {
@@ -16,6 +18,11 @@ namespace Exercise
             double contractValue = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.WriteLine("Enter numer of installments: ");
             int installments = int.Parse(Console.ReadLine());
+
+            Contract myContract = new Contract(contractNumber, contractDate, contractValue);
+
+            ContractService contractService = new ContractService(new PaypalService());
+            contractService.ProcessContract(myContract, months);
         }
     }
 }
